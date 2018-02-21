@@ -1,0 +1,886 @@
+
+AVR_LibraryProject.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000656  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000602  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  00000656  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000688  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000c0  00000000  00000000  000006c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000c47  00000000  00000000  00000784  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000006f8  00000000  00000000  000013cb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000776  00000000  00000000  00001ac3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000002c0  00000000  00000000  0000223c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000051a  00000000  00000000  000024fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000005d8  00000000  00000000  00002a16  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000b0  00000000  00000000  00002fee  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   8:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  10:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  14:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  18:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  1c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  20:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  24:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  28:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  2c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  30:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  34:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  38:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  3c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  40:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  44:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  48:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  4c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  50:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  54:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  58:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  5c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  60:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  64:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e2 e0       	ldi	r30, 0x02	; 2
+  7c:	f6 e0       	ldi	r31, 0x06	; 6
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a0 30       	cpi	r26, 0x00	; 0
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+  8a:	0e 94 7a 02 	call	0x4f4	; 0x4f4 <main>
+  8e:	0c 94 ff 02 	jmp	0x5fe	; 0x5fe <_exit>
+
+00000092 <__bad_interrupt>:
+  92:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000096 <MEM_AllocHeap>:
+		//Return Op Successful
+		return true;
+	}
+	//Return Op Failure
+	return false;
+}
+  96:	cf 93       	push	r28
+  98:	df 93       	push	r29
+  9a:	00 d0       	rcall	.+0      	; 0x9c <MEM_AllocHeap+0x6>
+  9c:	00 d0       	rcall	.+0      	; 0x9e <MEM_AllocHeap+0x8>
+  9e:	cd b7       	in	r28, 0x3d	; 61
+  a0:	de b7       	in	r29, 0x3e	; 62
+  a2:	9c 83       	std	Y+4, r25	; 0x04
+  a4:	8b 83       	std	Y+3, r24	; 0x03
+  a6:	1a 82       	std	Y+2, r1	; 0x02
+  a8:	19 82       	std	Y+1, r1	; 0x01
+  aa:	0e c0       	rjmp	.+28     	; 0xc8 <MEM_AllocHeap+0x32>
+  ac:	89 81       	ldd	r24, Y+1	; 0x01
+  ae:	9a 81       	ldd	r25, Y+2	; 0x02
+  b0:	2b 81       	ldd	r18, Y+3	; 0x03
+  b2:	3c 81       	ldd	r19, Y+4	; 0x04
+  b4:	82 0f       	add	r24, r18
+  b6:	93 1f       	adc	r25, r19
+  b8:	2f ef       	ldi	r18, 0xFF	; 255
+  ba:	fc 01       	movw	r30, r24
+  bc:	20 83       	st	Z, r18
+  be:	89 81       	ldd	r24, Y+1	; 0x01
+  c0:	9a 81       	ldd	r25, Y+2	; 0x02
+  c2:	09 96       	adiw	r24, 0x09	; 9
+  c4:	9a 83       	std	Y+2, r25	; 0x02
+  c6:	89 83       	std	Y+1, r24	; 0x01
+  c8:	89 81       	ldd	r24, Y+1	; 0x01
+  ca:	9a 81       	ldd	r25, Y+2	; 0x02
+  cc:	80 32       	cpi	r24, 0x20	; 32
+  ce:	91 40       	sbci	r25, 0x01	; 1
+  d0:	6c f3       	brlt	.-38     	; 0xac <MEM_AllocHeap+0x16>
+  d2:	0f 90       	pop	r0
+  d4:	0f 90       	pop	r0
+  d6:	0f 90       	pop	r0
+  d8:	0f 90       	pop	r0
+  da:	df 91       	pop	r29
+  dc:	cf 91       	pop	r28
+  de:	08 95       	ret
+
+000000e0 <MEM_Alloc>:
+  e0:	cf 93       	push	r28
+  e2:	df 93       	push	r29
+  e4:	cd b7       	in	r28, 0x3d	; 61
+  e6:	de b7       	in	r29, 0x3e	; 62
+  e8:	28 97       	sbiw	r28, 0x08	; 8
+  ea:	0f b6       	in	r0, 0x3f	; 63
+  ec:	f8 94       	cli
+  ee:	de bf       	out	0x3e, r29	; 62
+  f0:	0f be       	out	0x3f, r0	; 63
+  f2:	cd bf       	out	0x3d, r28	; 61
+  f4:	98 87       	std	Y+8, r25	; 0x08
+  f6:	8f 83       	std	Y+7, r24	; 0x07
+  f8:	19 82       	std	Y+1, r1	; 0x01
+  fa:	1b 82       	std	Y+3, r1	; 0x03
+  fc:	1a 82       	std	Y+2, r1	; 0x02
+  fe:	7a c0       	rjmp	.+244    	; 0x1f4 <MEM_Alloc+0x114>
+ 100:	8a 81       	ldd	r24, Y+2	; 0x02
+ 102:	9b 81       	ldd	r25, Y+3	; 0x03
+ 104:	2f 81       	ldd	r18, Y+7	; 0x07
+ 106:	38 85       	ldd	r19, Y+8	; 0x08
+ 108:	82 0f       	add	r24, r18
+ 10a:	93 1f       	adc	r25, r19
+ 10c:	fc 01       	movw	r30, r24
+ 10e:	80 81       	ld	r24, Z
+ 110:	8c 83       	std	Y+4, r24	; 0x04
+ 112:	8c 81       	ldd	r24, Y+4	; 0x04
+ 114:	88 23       	and	r24, r24
+ 116:	09 f4       	brne	.+2      	; 0x11a <MEM_Alloc+0x3a>
+ 118:	65 c0       	rjmp	.+202    	; 0x1e4 <MEM_Alloc+0x104>
+ 11a:	1e 82       	std	Y+6, r1	; 0x06
+ 11c:	1d 82       	std	Y+5, r1	; 0x05
+ 11e:	5d c0       	rjmp	.+186    	; 0x1da <MEM_Alloc+0xfa>
+ 120:	8c 81       	ldd	r24, Y+4	; 0x04
+ 122:	88 2f       	mov	r24, r24
+ 124:	90 e0       	ldi	r25, 0x00	; 0
+ 126:	0d 80       	ldd	r0, Y+5	; 0x05
+ 128:	02 c0       	rjmp	.+4      	; 0x12e <MEM_Alloc+0x4e>
+ 12a:	95 95       	asr	r25
+ 12c:	87 95       	ror	r24
+ 12e:	0a 94       	dec	r0
+ 130:	e2 f7       	brpl	.-8      	; 0x12a <MEM_Alloc+0x4a>
+ 132:	81 70       	andi	r24, 0x01	; 1
+ 134:	99 27       	eor	r25, r25
+ 136:	89 2b       	or	r24, r25
+ 138:	09 f4       	brne	.+2      	; 0x13c <MEM_Alloc+0x5c>
+ 13a:	41 c0       	rjmp	.+130    	; 0x1be <MEM_Alloc+0xde>
+ 13c:	8a 81       	ldd	r24, Y+2	; 0x02
+ 13e:	9b 81       	ldd	r25, Y+3	; 0x03
+ 140:	2f 81       	ldd	r18, Y+7	; 0x07
+ 142:	38 85       	ldd	r19, Y+8	; 0x08
+ 144:	82 0f       	add	r24, r18
+ 146:	93 1f       	adc	r25, r19
+ 148:	2a 81       	ldd	r18, Y+2	; 0x02
+ 14a:	3b 81       	ldd	r19, Y+3	; 0x03
+ 14c:	4f 81       	ldd	r20, Y+7	; 0x07
+ 14e:	58 85       	ldd	r21, Y+8	; 0x08
+ 150:	24 0f       	add	r18, r20
+ 152:	35 1f       	adc	r19, r21
+ 154:	f9 01       	movw	r30, r18
+ 156:	20 81       	ld	r18, Z
+ 158:	42 2f       	mov	r20, r18
+ 15a:	21 e0       	ldi	r18, 0x01	; 1
+ 15c:	30 e0       	ldi	r19, 0x00	; 0
+ 15e:	0d 80       	ldd	r0, Y+5	; 0x05
+ 160:	02 c0       	rjmp	.+4      	; 0x166 <MEM_Alloc+0x86>
+ 162:	22 0f       	add	r18, r18
+ 164:	33 1f       	adc	r19, r19
+ 166:	0a 94       	dec	r0
+ 168:	e2 f7       	brpl	.-8      	; 0x162 <MEM_Alloc+0x82>
+ 16a:	20 95       	com	r18
+ 16c:	24 23       	and	r18, r20
+ 16e:	fc 01       	movw	r30, r24
+ 170:	20 83       	st	Z, r18
+ 172:	89 81       	ldd	r24, Y+1	; 0x01
+ 174:	28 2f       	mov	r18, r24
+ 176:	30 e0       	ldi	r19, 0x00	; 0
+ 178:	c9 01       	movw	r24, r18
+ 17a:	88 0f       	add	r24, r24
+ 17c:	99 1f       	adc	r25, r25
+ 17e:	88 0f       	add	r24, r24
+ 180:	99 1f       	adc	r25, r25
+ 182:	88 0f       	add	r24, r24
+ 184:	99 1f       	adc	r25, r25
+ 186:	28 0f       	add	r18, r24
+ 188:	39 1f       	adc	r19, r25
+ 18a:	8d 81       	ldd	r24, Y+5	; 0x05
+ 18c:	9e 81       	ldd	r25, Y+6	; 0x06
+ 18e:	82 0f       	add	r24, r18
+ 190:	93 1f       	adc	r25, r19
+ 192:	01 96       	adiw	r24, 0x01	; 1
+ 194:	2f 81       	ldd	r18, Y+7	; 0x07
+ 196:	38 85       	ldd	r19, Y+8	; 0x08
+ 198:	82 0f       	add	r24, r18
+ 19a:	93 1f       	adc	r25, r19
+ 19c:	2e ee       	ldi	r18, 0xEE	; 238
+ 19e:	fc 01       	movw	r30, r24
+ 1a0:	20 83       	st	Z, r18
+ 1a2:	8d 81       	ldd	r24, Y+5	; 0x05
+ 1a4:	9e 81       	ldd	r25, Y+6	; 0x06
+ 1a6:	88 0f       	add	r24, r24
+ 1a8:	99 1f       	adc	r25, r25
+ 1aa:	82 95       	swap	r24
+ 1ac:	92 95       	swap	r25
+ 1ae:	90 7f       	andi	r25, 0xF0	; 240
+ 1b0:	98 27       	eor	r25, r24
+ 1b2:	80 7f       	andi	r24, 0xF0	; 240
+ 1b4:	98 27       	eor	r25, r24
+ 1b6:	98 2f       	mov	r25, r24
+ 1b8:	89 81       	ldd	r24, Y+1	; 0x01
+ 1ba:	89 2b       	or	r24, r25
+ 1bc:	22 c0       	rjmp	.+68     	; 0x202 <MEM_Alloc+0x122>
+ 1be:	8a 81       	ldd	r24, Y+2	; 0x02
+ 1c0:	9b 81       	ldd	r25, Y+3	; 0x03
+ 1c2:	2f 81       	ldd	r18, Y+7	; 0x07
+ 1c4:	38 85       	ldd	r19, Y+8	; 0x08
+ 1c6:	82 0f       	add	r24, r18
+ 1c8:	93 1f       	adc	r25, r19
+ 1ca:	fc 01       	movw	r30, r24
+ 1cc:	80 81       	ld	r24, Z
+ 1ce:	8c 83       	std	Y+4, r24	; 0x04
+ 1d0:	8d 81       	ldd	r24, Y+5	; 0x05
+ 1d2:	9e 81       	ldd	r25, Y+6	; 0x06
+ 1d4:	01 96       	adiw	r24, 0x01	; 1
+ 1d6:	9e 83       	std	Y+6, r25	; 0x06
+ 1d8:	8d 83       	std	Y+5, r24	; 0x05
+ 1da:	8d 81       	ldd	r24, Y+5	; 0x05
+ 1dc:	9e 81       	ldd	r25, Y+6	; 0x06
+ 1de:	08 97       	sbiw	r24, 0x08	; 8
+ 1e0:	0c f4       	brge	.+2      	; 0x1e4 <MEM_Alloc+0x104>
+ 1e2:	9e cf       	rjmp	.-196    	; 0x120 <MEM_Alloc+0x40>
+ 1e4:	89 81       	ldd	r24, Y+1	; 0x01
+ 1e6:	8f 5f       	subi	r24, 0xFF	; 255
+ 1e8:	89 83       	std	Y+1, r24	; 0x01
+ 1ea:	8a 81       	ldd	r24, Y+2	; 0x02
+ 1ec:	9b 81       	ldd	r25, Y+3	; 0x03
+ 1ee:	09 96       	adiw	r24, 0x09	; 9
+ 1f0:	9b 83       	std	Y+3, r25	; 0x03
+ 1f2:	8a 83       	std	Y+2, r24	; 0x02
+ 1f4:	8a 81       	ldd	r24, Y+2	; 0x02
+ 1f6:	9b 81       	ldd	r25, Y+3	; 0x03
+ 1f8:	80 32       	cpi	r24, 0x20	; 32
+ 1fa:	91 40       	sbci	r25, 0x01	; 1
+ 1fc:	0c f4       	brge	.+2      	; 0x200 <MEM_Alloc+0x120>
+ 1fe:	80 cf       	rjmp	.-256    	; 0x100 <MEM_Alloc+0x20>
+ 200:	80 e0       	ldi	r24, 0x00	; 0
+ 202:	28 96       	adiw	r28, 0x08	; 8
+ 204:	0f b6       	in	r0, 0x3f	; 63
+ 206:	f8 94       	cli
+ 208:	de bf       	out	0x3e, r29	; 62
+ 20a:	0f be       	out	0x3f, r0	; 63
+ 20c:	cd bf       	out	0x3d, r28	; 61
+ 20e:	df 91       	pop	r29
+ 210:	cf 91       	pop	r28
+ 212:	08 95       	ret
+
+00000214 <MEM_Free>:
+ 214:	cf 93       	push	r28
+ 216:	df 93       	push	r29
+ 218:	00 d0       	rcall	.+0      	; 0x21a <MEM_Free+0x6>
+ 21a:	1f 92       	push	r1
+ 21c:	cd b7       	in	r28, 0x3d	; 61
+ 21e:	de b7       	in	r29, 0x3e	; 62
+ 220:	9a 83       	std	Y+2, r25	; 0x02
+ 222:	89 83       	std	Y+1, r24	; 0x01
+ 224:	6b 83       	std	Y+3, r22	; 0x03
+ 226:	8b 81       	ldd	r24, Y+3	; 0x03
+ 228:	88 2f       	mov	r24, r24
+ 22a:	90 e0       	ldi	r25, 0x00	; 0
+ 22c:	9c 01       	movw	r18, r24
+ 22e:	2f 71       	andi	r18, 0x1F	; 31
+ 230:	33 27       	eor	r19, r19
+ 232:	c9 01       	movw	r24, r18
+ 234:	88 0f       	add	r24, r24
+ 236:	99 1f       	adc	r25, r25
+ 238:	88 0f       	add	r24, r24
+ 23a:	99 1f       	adc	r25, r25
+ 23c:	88 0f       	add	r24, r24
+ 23e:	99 1f       	adc	r25, r25
+ 240:	82 0f       	add	r24, r18
+ 242:	93 1f       	adc	r25, r19
+ 244:	9c 01       	movw	r18, r24
+ 246:	89 81       	ldd	r24, Y+1	; 0x01
+ 248:	9a 81       	ldd	r25, Y+2	; 0x02
+ 24a:	ac 01       	movw	r20, r24
+ 24c:	42 0f       	add	r20, r18
+ 24e:	53 1f       	adc	r21, r19
+ 250:	8b 81       	ldd	r24, Y+3	; 0x03
+ 252:	88 2f       	mov	r24, r24
+ 254:	90 e0       	ldi	r25, 0x00	; 0
+ 256:	9c 01       	movw	r18, r24
+ 258:	2f 71       	andi	r18, 0x1F	; 31
+ 25a:	33 27       	eor	r19, r19
+ 25c:	c9 01       	movw	r24, r18
+ 25e:	88 0f       	add	r24, r24
+ 260:	99 1f       	adc	r25, r25
+ 262:	88 0f       	add	r24, r24
+ 264:	99 1f       	adc	r25, r25
+ 266:	88 0f       	add	r24, r24
+ 268:	99 1f       	adc	r25, r25
+ 26a:	82 0f       	add	r24, r18
+ 26c:	93 1f       	adc	r25, r19
+ 26e:	9c 01       	movw	r18, r24
+ 270:	89 81       	ldd	r24, Y+1	; 0x01
+ 272:	9a 81       	ldd	r25, Y+2	; 0x02
+ 274:	82 0f       	add	r24, r18
+ 276:	93 1f       	adc	r25, r19
+ 278:	fc 01       	movw	r30, r24
+ 27a:	80 81       	ld	r24, Z
+ 27c:	68 2f       	mov	r22, r24
+ 27e:	8b 81       	ldd	r24, Y+3	; 0x03
+ 280:	82 95       	swap	r24
+ 282:	86 95       	lsr	r24
+ 284:	87 70       	andi	r24, 0x07	; 7
+ 286:	88 2f       	mov	r24, r24
+ 288:	90 e0       	ldi	r25, 0x00	; 0
+ 28a:	9c 01       	movw	r18, r24
+ 28c:	33 27       	eor	r19, r19
+ 28e:	81 e0       	ldi	r24, 0x01	; 1
+ 290:	90 e0       	ldi	r25, 0x00	; 0
+ 292:	02 c0       	rjmp	.+4      	; 0x298 <MEM_Free+0x84>
+ 294:	88 0f       	add	r24, r24
+ 296:	99 1f       	adc	r25, r25
+ 298:	2a 95       	dec	r18
+ 29a:	e2 f7       	brpl	.-8      	; 0x294 <MEM_Free+0x80>
+ 29c:	86 2b       	or	r24, r22
+ 29e:	fa 01       	movw	r30, r20
+ 2a0:	80 83       	st	Z, r24
+ 2a2:	0f 90       	pop	r0
+ 2a4:	0f 90       	pop	r0
+ 2a6:	0f 90       	pop	r0
+ 2a8:	df 91       	pop	r29
+ 2aa:	cf 91       	pop	r28
+ 2ac:	08 95       	ret
+
+000002ae <MEM_Erase>:
+ 2ae:	cf 93       	push	r28
+ 2b0:	df 93       	push	r29
+ 2b2:	00 d0       	rcall	.+0      	; 0x2b4 <MEM_Erase+0x6>
+ 2b4:	00 d0       	rcall	.+0      	; 0x2b6 <MEM_Erase+0x8>
+ 2b6:	1f 92       	push	r1
+ 2b8:	cd b7       	in	r28, 0x3d	; 61
+ 2ba:	de b7       	in	r29, 0x3e	; 62
+ 2bc:	9c 83       	std	Y+4, r25	; 0x04
+ 2be:	8b 83       	std	Y+3, r24	; 0x03
+ 2c0:	6d 83       	std	Y+5, r22	; 0x05
+ 2c2:	8d 81       	ldd	r24, Y+5	; 0x05
+ 2c4:	8f 71       	andi	r24, 0x1F	; 31
+ 2c6:	89 83       	std	Y+1, r24	; 0x01
+ 2c8:	8d 81       	ldd	r24, Y+5	; 0x05
+ 2ca:	82 95       	swap	r24
+ 2cc:	86 95       	lsr	r24
+ 2ce:	87 70       	andi	r24, 0x07	; 7
+ 2d0:	8a 83       	std	Y+2, r24	; 0x02
+ 2d2:	89 81       	ldd	r24, Y+1	; 0x01
+ 2d4:	28 2f       	mov	r18, r24
+ 2d6:	30 e0       	ldi	r19, 0x00	; 0
+ 2d8:	c9 01       	movw	r24, r18
+ 2da:	88 0f       	add	r24, r24
+ 2dc:	99 1f       	adc	r25, r25
+ 2de:	88 0f       	add	r24, r24
+ 2e0:	99 1f       	adc	r25, r25
+ 2e2:	88 0f       	add	r24, r24
+ 2e4:	99 1f       	adc	r25, r25
+ 2e6:	28 0f       	add	r18, r24
+ 2e8:	39 1f       	adc	r19, r25
+ 2ea:	8a 81       	ldd	r24, Y+2	; 0x02
+ 2ec:	88 2f       	mov	r24, r24
+ 2ee:	90 e0       	ldi	r25, 0x00	; 0
+ 2f0:	82 0f       	add	r24, r18
+ 2f2:	93 1f       	adc	r25, r19
+ 2f4:	01 96       	adiw	r24, 0x01	; 1
+ 2f6:	2b 81       	ldd	r18, Y+3	; 0x03
+ 2f8:	3c 81       	ldd	r19, Y+4	; 0x04
+ 2fa:	82 0f       	add	r24, r18
+ 2fc:	93 1f       	adc	r25, r19
+ 2fe:	fc 01       	movw	r30, r24
+ 300:	10 82       	st	Z, r1
+ 302:	8d 81       	ldd	r24, Y+5	; 0x05
+ 304:	88 2f       	mov	r24, r24
+ 306:	90 e0       	ldi	r25, 0x00	; 0
+ 308:	9c 01       	movw	r18, r24
+ 30a:	2f 71       	andi	r18, 0x1F	; 31
+ 30c:	33 27       	eor	r19, r19
+ 30e:	c9 01       	movw	r24, r18
+ 310:	88 0f       	add	r24, r24
+ 312:	99 1f       	adc	r25, r25
+ 314:	88 0f       	add	r24, r24
+ 316:	99 1f       	adc	r25, r25
+ 318:	88 0f       	add	r24, r24
+ 31a:	99 1f       	adc	r25, r25
+ 31c:	82 0f       	add	r24, r18
+ 31e:	93 1f       	adc	r25, r19
+ 320:	9c 01       	movw	r18, r24
+ 322:	8b 81       	ldd	r24, Y+3	; 0x03
+ 324:	9c 81       	ldd	r25, Y+4	; 0x04
+ 326:	ac 01       	movw	r20, r24
+ 328:	42 0f       	add	r20, r18
+ 32a:	53 1f       	adc	r21, r19
+ 32c:	8d 81       	ldd	r24, Y+5	; 0x05
+ 32e:	88 2f       	mov	r24, r24
+ 330:	90 e0       	ldi	r25, 0x00	; 0
+ 332:	9c 01       	movw	r18, r24
+ 334:	2f 71       	andi	r18, 0x1F	; 31
+ 336:	33 27       	eor	r19, r19
+ 338:	c9 01       	movw	r24, r18
+ 33a:	88 0f       	add	r24, r24
+ 33c:	99 1f       	adc	r25, r25
+ 33e:	88 0f       	add	r24, r24
+ 340:	99 1f       	adc	r25, r25
+ 342:	88 0f       	add	r24, r24
+ 344:	99 1f       	adc	r25, r25
+ 346:	82 0f       	add	r24, r18
+ 348:	93 1f       	adc	r25, r19
+ 34a:	9c 01       	movw	r18, r24
+ 34c:	8b 81       	ldd	r24, Y+3	; 0x03
+ 34e:	9c 81       	ldd	r25, Y+4	; 0x04
+ 350:	82 0f       	add	r24, r18
+ 352:	93 1f       	adc	r25, r19
+ 354:	fc 01       	movw	r30, r24
+ 356:	80 81       	ld	r24, Z
+ 358:	68 2f       	mov	r22, r24
+ 35a:	8d 81       	ldd	r24, Y+5	; 0x05
+ 35c:	82 95       	swap	r24
+ 35e:	86 95       	lsr	r24
+ 360:	87 70       	andi	r24, 0x07	; 7
+ 362:	88 2f       	mov	r24, r24
+ 364:	90 e0       	ldi	r25, 0x00	; 0
+ 366:	9c 01       	movw	r18, r24
+ 368:	33 27       	eor	r19, r19
+ 36a:	81 e0       	ldi	r24, 0x01	; 1
+ 36c:	90 e0       	ldi	r25, 0x00	; 0
+ 36e:	02 c0       	rjmp	.+4      	; 0x374 <MEM_Erase+0xc6>
+ 370:	88 0f       	add	r24, r24
+ 372:	99 1f       	adc	r25, r25
+ 374:	2a 95       	dec	r18
+ 376:	e2 f7       	brpl	.-8      	; 0x370 <MEM_Erase+0xc2>
+ 378:	86 2b       	or	r24, r22
+ 37a:	fa 01       	movw	r30, r20
+ 37c:	80 83       	st	Z, r24
+ 37e:	0f 90       	pop	r0
+ 380:	0f 90       	pop	r0
+ 382:	0f 90       	pop	r0
+ 384:	0f 90       	pop	r0
+ 386:	0f 90       	pop	r0
+ 388:	df 91       	pop	r29
+ 38a:	cf 91       	pop	r28
+ 38c:	08 95       	ret
+
+0000038e <MEM_SafeRead>:
+//<Performs an Checked Write Operation using Virtual Address, Returns True if Successful>
+byte MEM_SafeRead(byte* heapPtr, byte virtualAddr)
+{
+ 38e:	cf 93       	push	r28
+ 390:	df 93       	push	r29
+ 392:	00 d0       	rcall	.+0      	; 0x394 <MEM_SafeRead+0x6>
+ 394:	00 d0       	rcall	.+0      	; 0x396 <MEM_SafeRead+0x8>
+ 396:	1f 92       	push	r1
+ 398:	cd b7       	in	r28, 0x3d	; 61
+ 39a:	de b7       	in	r29, 0x3e	; 62
+ 39c:	9c 83       	std	Y+4, r25	; 0x04
+ 39e:	8b 83       	std	Y+3, r24	; 0x03
+ 3a0:	6d 83       	std	Y+5, r22	; 0x05
+	//Decipher Virtual Address, Split into Block#/Byte# Subparts
+	byte blockNum = MACRO_SplitBlock(virtualAddr);
+ 3a2:	8d 81       	ldd	r24, Y+5	; 0x05
+ 3a4:	8f 71       	andi	r24, 0x1F	; 31
+ 3a6:	89 83       	std	Y+1, r24	; 0x01
+	byte byteNum  = MACRO_SplitByte(virtualAddr);
+ 3a8:	8d 81       	ldd	r24, Y+5	; 0x05
+ 3aa:	82 95       	swap	r24
+ 3ac:	86 95       	lsr	r24
+ 3ae:	87 70       	andi	r24, 0x07	; 7
+ 3b0:	8a 83       	std	Y+2, r24	; 0x02
+	//Determine Whether Virtual Address is Valid- Memory is Used
+	if (!MACRO_CheckBit(blockNum * 9, byteNum))
+ 3b2:	89 81       	ldd	r24, Y+1	; 0x01
+ 3b4:	28 2f       	mov	r18, r24
+ 3b6:	30 e0       	ldi	r19, 0x00	; 0
+ 3b8:	c9 01       	movw	r24, r18
+ 3ba:	88 0f       	add	r24, r24
+ 3bc:	99 1f       	adc	r25, r25
+ 3be:	88 0f       	add	r24, r24
+ 3c0:	99 1f       	adc	r25, r25
+ 3c2:	88 0f       	add	r24, r24
+ 3c4:	99 1f       	adc	r25, r25
+ 3c6:	82 0f       	add	r24, r18
+ 3c8:	93 1f       	adc	r25, r19
+ 3ca:	2a 81       	ldd	r18, Y+2	; 0x02
+ 3cc:	22 2f       	mov	r18, r18
+ 3ce:	30 e0       	ldi	r19, 0x00	; 0
+ 3d0:	02 c0       	rjmp	.+4      	; 0x3d6 <MEM_SafeRead+0x48>
+ 3d2:	95 95       	asr	r25
+ 3d4:	87 95       	ror	r24
+ 3d6:	2a 95       	dec	r18
+ 3d8:	e2 f7       	brpl	.-8      	; 0x3d2 <MEM_SafeRead+0x44>
+ 3da:	81 70       	andi	r24, 0x01	; 1
+ 3dc:	99 27       	eor	r25, r25
+ 3de:	89 2b       	or	r24, r25
+ 3e0:	c9 f4       	brne	.+50     	; 0x414 <__LOCK_REGION_LENGTH__+0x14>
+	{
+		//Write to Virtual Address in Designated Heap
+		return heapPtr[MACRO_OffsetData(blockNum, byteNum)];
+ 3e2:	89 81       	ldd	r24, Y+1	; 0x01
+ 3e4:	28 2f       	mov	r18, r24
+ 3e6:	30 e0       	ldi	r19, 0x00	; 0
+ 3e8:	c9 01       	movw	r24, r18
+ 3ea:	88 0f       	add	r24, r24
+ 3ec:	99 1f       	adc	r25, r25
+ 3ee:	88 0f       	add	r24, r24
+ 3f0:	99 1f       	adc	r25, r25
+ 3f2:	88 0f       	add	r24, r24
+ 3f4:	99 1f       	adc	r25, r25
+ 3f6:	28 0f       	add	r18, r24
+ 3f8:	39 1f       	adc	r19, r25
+ 3fa:	8a 81       	ldd	r24, Y+2	; 0x02
+ 3fc:	88 2f       	mov	r24, r24
+ 3fe:	90 e0       	ldi	r25, 0x00	; 0
+ 400:	82 0f       	add	r24, r18
+ 402:	93 1f       	adc	r25, r19
+ 404:	01 96       	adiw	r24, 0x01	; 1
+ 406:	2b 81       	ldd	r18, Y+3	; 0x03
+ 408:	3c 81       	ldd	r19, Y+4	; 0x04
+ 40a:	82 0f       	add	r24, r18
+ 40c:	93 1f       	adc	r25, r19
+ 40e:	fc 01       	movw	r30, r24
+ 410:	80 81       	ld	r24, Z
+ 412:	01 c0       	rjmp	.+2      	; 0x416 <__LOCK_REGION_LENGTH__+0x16>
+	}
+	//Return Op Failure
+	return false;
+ 414:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 416:	0f 90       	pop	r0
+ 418:	0f 90       	pop	r0
+ 41a:	0f 90       	pop	r0
+ 41c:	0f 90       	pop	r0
+ 41e:	0f 90       	pop	r0
+ 420:	df 91       	pop	r29
+ 422:	cf 91       	pop	r28
+ 424:	08 95       	ret
+
+00000426 <MEM_FastWrite>:
+
+//<Performs an Unchecked Fast Write Operation using Virtual Address>
+void MEM_FastWrite(byte* heapPtr, byte virtualAddr, byte writeVal)
+{
+ 426:	cf 93       	push	r28
+ 428:	df 93       	push	r29
+ 42a:	00 d0       	rcall	.+0      	; 0x42c <MEM_FastWrite+0x6>
+ 42c:	00 d0       	rcall	.+0      	; 0x42e <MEM_FastWrite+0x8>
+ 42e:	00 d0       	rcall	.+0      	; 0x430 <MEM_FastWrite+0xa>
+ 430:	cd b7       	in	r28, 0x3d	; 61
+ 432:	de b7       	in	r29, 0x3e	; 62
+ 434:	9c 83       	std	Y+4, r25	; 0x04
+ 436:	8b 83       	std	Y+3, r24	; 0x03
+ 438:	6d 83       	std	Y+5, r22	; 0x05
+ 43a:	4e 83       	std	Y+6, r20	; 0x06
+	//Decipher Virtual Address, Split into Block#/Byte# Subparts
+	byte blockNum = MACRO_SplitBlock(virtualAddr);
+ 43c:	8d 81       	ldd	r24, Y+5	; 0x05
+ 43e:	8f 71       	andi	r24, 0x1F	; 31
+ 440:	89 83       	std	Y+1, r24	; 0x01
+	byte byteNum  = MACRO_SplitByte(virtualAddr);
+ 442:	8d 81       	ldd	r24, Y+5	; 0x05
+ 444:	82 95       	swap	r24
+ 446:	86 95       	lsr	r24
+ 448:	87 70       	andi	r24, 0x07	; 7
+ 44a:	8a 83       	std	Y+2, r24	; 0x02
+	//Write to Virtual Address in Designated Heap
+	heapPtr[MACRO_OffsetData(blockNum, byteNum)] = writeVal;
+ 44c:	89 81       	ldd	r24, Y+1	; 0x01
+ 44e:	28 2f       	mov	r18, r24
+ 450:	30 e0       	ldi	r19, 0x00	; 0
+ 452:	c9 01       	movw	r24, r18
+ 454:	88 0f       	add	r24, r24
+ 456:	99 1f       	adc	r25, r25
+ 458:	88 0f       	add	r24, r24
+ 45a:	99 1f       	adc	r25, r25
+ 45c:	88 0f       	add	r24, r24
+ 45e:	99 1f       	adc	r25, r25
+ 460:	28 0f       	add	r18, r24
+ 462:	39 1f       	adc	r19, r25
+ 464:	8a 81       	ldd	r24, Y+2	; 0x02
+ 466:	88 2f       	mov	r24, r24
+ 468:	90 e0       	ldi	r25, 0x00	; 0
+ 46a:	82 0f       	add	r24, r18
+ 46c:	93 1f       	adc	r25, r19
+ 46e:	01 96       	adiw	r24, 0x01	; 1
+ 470:	2b 81       	ldd	r18, Y+3	; 0x03
+ 472:	3c 81       	ldd	r19, Y+4	; 0x04
+ 474:	82 0f       	add	r24, r18
+ 476:	93 1f       	adc	r25, r19
+ 478:	2e 81       	ldd	r18, Y+6	; 0x06
+ 47a:	fc 01       	movw	r30, r24
+ 47c:	20 83       	st	Z, r18
+}
+ 47e:	26 96       	adiw	r28, 0x06	; 6
+ 480:	0f b6       	in	r0, 0x3f	; 63
+ 482:	f8 94       	cli
+ 484:	de bf       	out	0x3e, r29	; 62
+ 486:	0f be       	out	0x3f, r0	; 63
+ 488:	cd bf       	out	0x3d, r28	; 61
+ 48a:	df 91       	pop	r29
+ 48c:	cf 91       	pop	r28
+ 48e:	08 95       	ret
+
+00000490 <MEM_FastRead>:
+//<Performs an Unchecked Fast Read Operation using Virtual Address>
+byte MEM_FastRead(byte* heapPtr, byte virtualAddr)
+{
+ 490:	cf 93       	push	r28
+ 492:	df 93       	push	r29
+ 494:	00 d0       	rcall	.+0      	; 0x496 <MEM_FastRead+0x6>
+ 496:	00 d0       	rcall	.+0      	; 0x498 <MEM_FastRead+0x8>
+ 498:	1f 92       	push	r1
+ 49a:	cd b7       	in	r28, 0x3d	; 61
+ 49c:	de b7       	in	r29, 0x3e	; 62
+ 49e:	9c 83       	std	Y+4, r25	; 0x04
+ 4a0:	8b 83       	std	Y+3, r24	; 0x03
+ 4a2:	6d 83       	std	Y+5, r22	; 0x05
+	//Decipher Virtual Address, Split into Block#/Byte# Subparts
+	byte blockNum = MACRO_SplitBlock(virtualAddr);
+ 4a4:	8d 81       	ldd	r24, Y+5	; 0x05
+ 4a6:	8f 71       	andi	r24, 0x1F	; 31
+ 4a8:	89 83       	std	Y+1, r24	; 0x01
+	byte byteNum  = MACRO_SplitByte(virtualAddr);
+ 4aa:	8d 81       	ldd	r24, Y+5	; 0x05
+ 4ac:	82 95       	swap	r24
+ 4ae:	86 95       	lsr	r24
+ 4b0:	87 70       	andi	r24, 0x07	; 7
+ 4b2:	8a 83       	std	Y+2, r24	; 0x02
+	//Write to Virtual Address in Designated Heap
+	return heapPtr[MACRO_OffsetData(blockNum, byteNum)];
+ 4b4:	89 81       	ldd	r24, Y+1	; 0x01
+ 4b6:	28 2f       	mov	r18, r24
+ 4b8:	30 e0       	ldi	r19, 0x00	; 0
+ 4ba:	c9 01       	movw	r24, r18
+ 4bc:	88 0f       	add	r24, r24
+ 4be:	99 1f       	adc	r25, r25
+ 4c0:	88 0f       	add	r24, r24
+ 4c2:	99 1f       	adc	r25, r25
+ 4c4:	88 0f       	add	r24, r24
+ 4c6:	99 1f       	adc	r25, r25
+ 4c8:	28 0f       	add	r18, r24
+ 4ca:	39 1f       	adc	r19, r25
+ 4cc:	8a 81       	ldd	r24, Y+2	; 0x02
+ 4ce:	88 2f       	mov	r24, r24
+ 4d0:	90 e0       	ldi	r25, 0x00	; 0
+ 4d2:	82 0f       	add	r24, r18
+ 4d4:	93 1f       	adc	r25, r19
+ 4d6:	01 96       	adiw	r24, 0x01	; 1
+ 4d8:	2b 81       	ldd	r18, Y+3	; 0x03
+ 4da:	3c 81       	ldd	r19, Y+4	; 0x04
+ 4dc:	82 0f       	add	r24, r18
+ 4de:	93 1f       	adc	r25, r19
+ 4e0:	fc 01       	movw	r30, r24
+ 4e2:	80 81       	ld	r24, Z
+}
+ 4e4:	0f 90       	pop	r0
+ 4e6:	0f 90       	pop	r0
+ 4e8:	0f 90       	pop	r0
+ 4ea:	0f 90       	pop	r0
+ 4ec:	0f 90       	pop	r0
+ 4ee:	df 91       	pop	r29
+ 4f0:	cf 91       	pop	r28
+ 4f2:	08 95       	ret
+
+000004f4 <main>:
+#include "AVR_ShiftReg.h"
+#include "AVR_HeapMemory.h"  //See this file for Data Structs/Algorithms!
+
+//<Program Entry for Simulator/Chip>
+int main(void)
+{
+ 4f4:	cf 93       	push	r28
+ 4f6:	df 93       	push	r29
+ 4f8:	cd b7       	in	r28, 0x3d	; 61
+ 4fa:	de b7       	in	r29, 0x3e	; 62
+ 4fc:	65 97       	sbiw	r28, 0x15	; 21
+ 4fe:	0f b6       	in	r0, 0x3f	; 63
+ 500:	f8 94       	cli
+ 502:	de bf       	out	0x3e, r29	; 62
+ 504:	0f be       	out	0x3f, r0	; 63
+ 506:	cd bf       	out	0x3d, r28	; 61
+	//Initialize a New Heap of Dynamic Memory
+	//Place A Heap Block at 0x0200 (Address: 512)
+	byte* heap = (byte*)0x0200;						//[UNIT TESTING FOR HEAP MEMORY MODULE- NOTES FOR EXPECTED IRAM VALUES]
+ 508:	80 e0       	ldi	r24, 0x00	; 0
+ 50a:	92 e0       	ldi	r25, 0x02	; 2
+ 50c:	9e 83       	std	Y+6, r25	; 0x06
+ 50e:	8d 83       	std	Y+5, r24	; 0x05
+	MEM_AllocHeap(heap);							//Checks AllocHeap(), at 0x0200, Should See Ctrl Registers Set to 0xFF
+ 510:	8d 81       	ldd	r24, Y+5	; 0x05
+ 512:	9e 81       	ldd	r25, Y+6	; 0x06
+ 514:	0e 94 4b 00 	call	0x96	; 0x96 <MEM_AllocHeap>
+	//Initialize an Array of New Bytes in Heap
+	byte data[12];
+	for (int i = 0; i < 12; i++) 
+ 518:	1a 82       	std	Y+2, r1	; 0x02
+ 51a:	19 82       	std	Y+1, r1	; 0x01
+ 51c:	13 c0       	rjmp	.+38     	; 0x544 <main+0x50>
+	{
+		data[i] = MEM_Alloc(heap);					//Checks Alloc(), Should See Twelve New Pieces of Allocated Memory (0xEE)
+ 51e:	8d 81       	ldd	r24, Y+5	; 0x05
+ 520:	9e 81       	ldd	r25, Y+6	; 0x06
+ 522:	0e 94 70 00 	call	0xe0	; 0xe0 <MEM_Alloc>
+ 526:	48 2f       	mov	r20, r24
+ 528:	9e 01       	movw	r18, r28
+ 52a:	26 5f       	subi	r18, 0xF6	; 246
+ 52c:	3f 4f       	sbci	r19, 0xFF	; 255
+ 52e:	89 81       	ldd	r24, Y+1	; 0x01
+ 530:	9a 81       	ldd	r25, Y+2	; 0x02
+ 532:	82 0f       	add	r24, r18
+ 534:	93 1f       	adc	r25, r19
+ 536:	fc 01       	movw	r30, r24
+ 538:	40 83       	st	Z, r20
+	//Place A Heap Block at 0x0200 (Address: 512)
+	byte* heap = (byte*)0x0200;						//[UNIT TESTING FOR HEAP MEMORY MODULE- NOTES FOR EXPECTED IRAM VALUES]
+	MEM_AllocHeap(heap);							//Checks AllocHeap(), at 0x0200, Should See Ctrl Registers Set to 0xFF
+	//Initialize an Array of New Bytes in Heap
+	byte data[12];
+	for (int i = 0; i < 12; i++) 
+ 53a:	89 81       	ldd	r24, Y+1	; 0x01
+ 53c:	9a 81       	ldd	r25, Y+2	; 0x02
+ 53e:	01 96       	adiw	r24, 0x01	; 1
+ 540:	9a 83       	std	Y+2, r25	; 0x02
+ 542:	89 83       	std	Y+1, r24	; 0x01
+ 544:	89 81       	ldd	r24, Y+1	; 0x01
+ 546:	9a 81       	ldd	r25, Y+2	; 0x02
+ 548:	0c 97       	sbiw	r24, 0x0c	; 12
+ 54a:	4c f3       	brlt	.-46     	; 0x51e <main+0x2a>
+	{
+		data[i] = MEM_Alloc(heap);					//Checks Alloc(), Should See Twelve New Pieces of Allocated Memory (0xEE)
+	}
+	//Change First Two Entries
+	MEM_FastWrite(heap, data[0], 0xAA);				//Checks FastWrite(), Should See First Two Elements Set to 0xAA
+ 54c:	2a 85       	ldd	r18, Y+10	; 0x0a
+ 54e:	8d 81       	ldd	r24, Y+5	; 0x05
+ 550:	9e 81       	ldd	r25, Y+6	; 0x06
+ 552:	4a ea       	ldi	r20, 0xAA	; 170
+ 554:	62 2f       	mov	r22, r18
+ 556:	0e 94 13 02 	call	0x426	; 0x426 <MEM_FastWrite>
+	MEM_FastWrite(heap, data[1], 0xAA);				//...
+ 55a:	2b 85       	ldd	r18, Y+11	; 0x0b
+ 55c:	8d 81       	ldd	r24, Y+5	; 0x05
+ 55e:	9e 81       	ldd	r25, Y+6	; 0x06
+ 560:	4a ea       	ldi	r20, 0xAA	; 170
+ 562:	62 2f       	mov	r22, r18
+ 564:	0e 94 13 02 	call	0x426	; 0x426 <MEM_FastWrite>
+	//Read Entries (ReadVal Used for Debugging)
+	byte readVal = MEM_FastRead(heap, data[1]);		//Checks FastRead(), Should See Return Value of 0xAA
+ 568:	2b 85       	ldd	r18, Y+11	; 0x0b
+ 56a:	8d 81       	ldd	r24, Y+5	; 0x05
+ 56c:	9e 81       	ldd	r25, Y+6	; 0x06
+ 56e:	62 2f       	mov	r22, r18
+ 570:	0e 94 48 02 	call	0x490	; 0x490 <MEM_FastRead>
+ 574:	8f 83       	std	Y+7, r24	; 0x07
+	readVal = MEM_FastRead(heap, 0x03);				//Checks FastRead(), Should See Return Value of (Free Data)	
+ 576:	8d 81       	ldd	r24, Y+5	; 0x05
+ 578:	9e 81       	ldd	r25, Y+6	; 0x06
+ 57a:	63 e0       	ldi	r22, 0x03	; 3
+ 57c:	0e 94 48 02 	call	0x490	; 0x490 <MEM_FastRead>
+ 580:	8f 83       	std	Y+7, r24	; 0x07
+	//Read Entries (Safely)
+	readVal = MEM_SafeRead(heap, data[1]);			//Checks SafeRead(), Should See Return Value of 0xAA
+ 582:	2b 85       	ldd	r18, Y+11	; 0x0b
+ 584:	8d 81       	ldd	r24, Y+5	; 0x05
+ 586:	9e 81       	ldd	r25, Y+6	; 0x06
+ 588:	62 2f       	mov	r22, r18
+ 58a:	0e 94 c7 01 	call	0x38e	; 0x38e <MEM_SafeRead>
+ 58e:	8f 83       	std	Y+7, r24	; 0x07
+	readVal = MEM_SafeRead(heap, 0x03);				//Checks SafeRead(), Should See Failure Return Value (Reading Freed Data)
+ 590:	8d 81       	ldd	r24, Y+5	; 0x05
+ 592:	9e 81       	ldd	r25, Y+6	; 0x06
+ 594:	63 e0       	ldi	r22, 0x03	; 3
+ 596:	0e 94 c7 01 	call	0x38e	; 0x38e <MEM_SafeRead>
+ 59a:	8f 83       	std	Y+7, r24	; 0x07
+	//Free First Two Entries
+	MEM_Free(heap, data[0]);						//Checks MEM_Free(), Should See Ctrl Registers Change for Element 0-1
+ 59c:	2a 85       	ldd	r18, Y+10	; 0x0a
+ 59e:	8d 81       	ldd	r24, Y+5	; 0x05
+ 5a0:	9e 81       	ldd	r25, Y+6	; 0x06
+ 5a2:	62 2f       	mov	r22, r18
+ 5a4:	0e 94 0a 01 	call	0x214	; 0x214 <MEM_Free>
+	MEM_Free(heap, data[1]);						//... However, the Memory Values Themselves Should Remain UNCHANGED
+ 5a8:	2b 85       	ldd	r18, Y+11	; 0x0b
+ 5aa:	8d 81       	ldd	r24, Y+5	; 0x05
+ 5ac:	9e 81       	ldd	r25, Y+6	; 0x06
+ 5ae:	62 2f       	mov	r22, r18
+ 5b0:	0e 94 0a 01 	call	0x214	; 0x214 <MEM_Free>
+	//Free Array of Bytes from Heap
+	for (int i = 2; i < 12; i++) 
+ 5b4:	82 e0       	ldi	r24, 0x02	; 2
+ 5b6:	90 e0       	ldi	r25, 0x00	; 0
+ 5b8:	9c 83       	std	Y+4, r25	; 0x04
+ 5ba:	8b 83       	std	Y+3, r24	; 0x03
+ 5bc:	13 c0       	rjmp	.+38     	; 0x5e4 <main+0xf0>
+	{ 
+		MEM_Erase(heap, data[i]);					//Checks MEM_Erase(), Should See Ctrl Registers Change for Element 2-12 
+ 5be:	9e 01       	movw	r18, r28
+ 5c0:	26 5f       	subi	r18, 0xF6	; 246
+ 5c2:	3f 4f       	sbci	r19, 0xFF	; 255
+ 5c4:	8b 81       	ldd	r24, Y+3	; 0x03
+ 5c6:	9c 81       	ldd	r25, Y+4	; 0x04
+ 5c8:	82 0f       	add	r24, r18
+ 5ca:	93 1f       	adc	r25, r19
+ 5cc:	fc 01       	movw	r30, r24
+ 5ce:	20 81       	ld	r18, Z
+ 5d0:	8d 81       	ldd	r24, Y+5	; 0x05
+ 5d2:	9e 81       	ldd	r25, Y+6	; 0x06
+ 5d4:	62 2f       	mov	r22, r18
+ 5d6:	0e 94 57 01 	call	0x2ae	; 0x2ae <MEM_Erase>
+	readVal = MEM_SafeRead(heap, 0x03);				//Checks SafeRead(), Should See Failure Return Value (Reading Freed Data)
+	//Free First Two Entries
+	MEM_Free(heap, data[0]);						//Checks MEM_Free(), Should See Ctrl Registers Change for Element 0-1
+	MEM_Free(heap, data[1]);						//... However, the Memory Values Themselves Should Remain UNCHANGED
+	//Free Array of Bytes from Heap
+	for (int i = 2; i < 12; i++) 
+ 5da:	8b 81       	ldd	r24, Y+3	; 0x03
+ 5dc:	9c 81       	ldd	r25, Y+4	; 0x04
+ 5de:	01 96       	adiw	r24, 0x01	; 1
+ 5e0:	9c 83       	std	Y+4, r25	; 0x04
+ 5e2:	8b 83       	std	Y+3, r24	; 0x03
+ 5e4:	8b 81       	ldd	r24, Y+3	; 0x03
+ 5e6:	9c 81       	ldd	r25, Y+4	; 0x04
+ 5e8:	0c 97       	sbiw	r24, 0x0c	; 12
+ 5ea:	4c f3       	brlt	.-46     	; 0x5be <main+0xca>
+	{ 
+		MEM_Erase(heap, data[i]);					//Checks MEM_Erase(), Should See Ctrl Registers Change for Element 2-12 
+	}												//... However, the Memory Values should be OVERWRITTEN with 0x00
+
+	//Create a Second Heap, at 0x400
+	byte* heapB = (byte*)0x0400;
+ 5ec:	80 e0       	ldi	r24, 0x00	; 0
+ 5ee:	94 e0       	ldi	r25, 0x04	; 4
+ 5f0:	99 87       	std	Y+9, r25	; 0x09
+ 5f2:	88 87       	std	Y+8, r24	; 0x08
+	MEM_AllocHeap(heapB);							//Checks AllocHeap(), Should See Second Heap Created at 0x400
+ 5f4:	88 85       	ldd	r24, Y+8	; 0x08
+ 5f6:	99 85       	ldd	r25, Y+9	; 0x09
+ 5f8:	0e 94 4b 00 	call	0x96	; 0x96 <MEM_AllocHeap>
+	//<Program Loop>
+    while (1) 
+    {
+		//Best for the AVR Platform to Stay in a Loop For Program Termination (No HALT Instruction on CPU)
+		//<Program Complete>
+    }
+ 5fc:	ff cf       	rjmp	.-2      	; 0x5fc <main+0x108>
+
+000005fe <_exit>:
+ 5fe:	f8 94       	cli
+
+00000600 <__stop_program>:
+ 600:	ff cf       	rjmp	.-2      	; 0x600 <__stop_program>

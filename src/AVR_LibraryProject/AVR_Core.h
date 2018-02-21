@@ -7,8 +7,9 @@
 
 //Universal Redefined Types
 typedef uint8_t byte;
-#define false	0;
-#define true	1;
+typedef uint16_t word;
+#define false	0
+#define true	1
 
 //AVR Core Definitions
 long FREQ_CPU = 8000000L; //1Mhz
